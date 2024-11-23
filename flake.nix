@@ -75,7 +75,7 @@
         nixpkgsRelease =
           builtins.replaceStrings [ "\n" ] [ "" ] "nixos-${nixosVersion}";
         shared = import "${pythoneda-shared-pythonlang-banner}/nix/shared.nix";
-        pythoneda-iac-shared-for = { python
+        pythoneda-iac-pulumi-azure-for = { python
           , pythoneda-iac-events
           , pythoneda-iac-shared
           , pythoneda-shared-pythonlang-banner
@@ -164,7 +164,7 @@
                 }/bin/banner.sh";
               extra-namespaces = "";
               nixpkgs-release = nixpkgsRelease;
-              package = packages.pythoneda-iac-shared-python38;
+              package = packages.pythoneda-iac-pulumi-azure-python38;
               python = pkgs.python38;
               pythoneda-shared-pythonlang-banner =
                 pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python38;
@@ -179,7 +179,7 @@
                 }/bin/banner.sh";
               extra-namespaces = "";
               nixpkgs-release = nixpkgsRelease;
-              package = packages.pythoneda-iac-shared-python39;
+              package = packages.pythoneda-iac-pulumi-azure-python39;
               python = pkgs.python39;
               pythoneda-shared-pythonlang-banner =
                 pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python39;
@@ -194,7 +194,7 @@
                 }/bin/banner.sh";
               extra-namespaces = "";
               nixpkgs-release = nixpkgsRelease;
-              package = packages.pythoneda-iac-shared-python310;
+              package = packages.pythoneda-iac-pulumi-azure-python310;
               python = pkgs.python310;
               pythoneda-shared-pythonlang-banner =
                 pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python310;
@@ -209,7 +209,7 @@
                 }/bin/banner.sh";
               extra-namespaces = "";
               nixpkgs-release = nixpkgsRelease;
-              package = packages.pythoneda-iac-shared-python311;
+              package = packages.pythoneda-iac-pulumi-azure-python311;
               python = pkgs.python311;
               pythoneda-shared-pythonlang-banner =
                 pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python311;
@@ -224,7 +224,7 @@
                 }/bin/banner.sh";
               extra-namespaces = "";
               nixpkgs-release = nixpkgsRelease;
-              package = packages.pythoneda-iac-shared-python312;
+              package = packages.pythoneda-iac-pulumi-azure-python312;
               python = pkgs.python312;
               pythoneda-shared-pythonlang-banner =
                 pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python312;
@@ -234,9 +234,9 @@
             };
         };
         packages = rec {
-          default = pythoneda-iac-shared-python311;
-          pythoneda-iac-shared-python38 =
-            pythoneda-pythoneda-iac-shared-for {
+          default = pythoneda-iac-pulumi-azure-python311;
+          pythoneda-iac-pulumi-azure-python38 =
+            pythoneda-iac-pulumi-azure-for {
               python = pkgs.python38;
               pythoneda-iac-events =
                 pythoneda-iac-events.packages.${system}.pythoneda-iac-events-python38;
@@ -247,8 +247,8 @@
               pythoneda-shared-pythonlang-domain =
                 pythoneda-shared-pythonlang-domain.packages.${system}.pythoneda-shared-pythonlang-domain-python38;
             };
-          pythoneda-iac-shared-python39 =
-            pythoneda-iac-shared-for {
+          pythoneda-iac-pulumi-azure-python39 =
+            pythoneda-iac-pulumi-azure-for {
               python = pkgs.python39;
               pythoneda-iac-events =
                 pythoneda-iac-events.packages.${system}.pythoneda-iac-events-python39;
@@ -259,8 +259,8 @@
               pythoneda-shared-pythonlang-domain =
                 pythoneda-shared-pythonlang-domain.packages.${system}.pythoneda-shared-pythonlang-domain-python39;
             };
-          pythoneda-iac-shared-python310 =
-            pythoneda-iac-shared-for {
+          pythoneda-iac-pulumi-azure-python310 =
+            pythoneda-iac-pulumi-azure-for {
               python = pkgs.python310;
               pythoneda-iac-events =
                 pythoneda-iac-events.packages.${system}.pythoneda-iac-events-python310;
@@ -271,8 +271,8 @@
               pythoneda-shared-pythonlang-domain =
                 pythoneda-shared-pythonlang-domain.packages.${system}.pythoneda-shared-pythonlang-domain-python310;
             };
-          pythoneda-iac-shared-python311 =
-            pythoneda-iac-shared-for {
+          pythoneda-iac-pulumi-azure-python311 =
+            pythoneda-iac-pulumi-azure-for {
               python = pkgs.python311;
               pythoneda-iac-events =
                 pythoneda-iac-events.packages.${system}.pythoneda-iac-events-python311;
@@ -283,8 +283,8 @@
               pythoneda-shared-pythonlang-domain =
                 pythoneda-shared-pythonlang-domain.packages.${system}.pythoneda-shared-pythonlang-domain-python311;
             };
-          pythoneda-iac-shared-python312 =
-            pythoneda-iac-shared-for {
+          pythoneda-iac-pulumi-azure-python312 =
+            pythoneda-iac-pulumi-azure-for {
               python = pkgs.python312;
               pythoneda-iac-events =
                 pythoneda-iac-events.packages.${system}.pythoneda-iac-events-python312;
