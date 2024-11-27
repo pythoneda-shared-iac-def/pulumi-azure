@@ -28,7 +28,7 @@
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:pythoneda-iac-def/events/0.0.3";
+      url = "github:pythoneda-iac-def/events/0.0.6";
     };
     pythoneda-iac-shared = {
       inputs.flake-utils.follows = "flake-utils";
@@ -37,19 +37,19 @@
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:pythoneda-iac-def/shared/0.0.3";
+      url = "github:pythoneda-iac-def/shared/0.0.5";
     };
     pythoneda-shared-pythonlang-banner = {
       inputs.nixos.follows = "nixos";
       inputs.flake-utils.follows = "flake-utils";
-      url = "github:pythoneda-shared-pythonlang-def/banner/0.0.69";
+      url = "github:pythoneda-shared-pythonlang-def/banner/0.0.70";
     };
     pythoneda-shared-pythonlang-domain = {
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixos.follows = "nixos";
       inputs.pythoneda-shared-pythonlang-banner.follows =
         "pythoneda-shared-pythonlang-banner";
-      url = "github:pythoneda-shared-pythonlang-def/domain/0.0.86";
+      url = "github:pythoneda-shared-pythonlang-def/domain/0.0.88";
     };
   };
   outputs = inputs:
@@ -58,8 +58,8 @@
       let
         org = "pythoneda-iac";
         repo = "pulumi-azure";
-        version = "0.0.4";
-        sha256 = "0d12xiikzfv05sx4dl821qfgm93sylpzxap0aq5dj5zw4zd48kqa";
+        version = "0.0.5";
+        sha256 = "0f37snn70knkv0drzb2zbn39ja5yfy9xkanlv65snakhlmm931l3";
         pname = "${org}-${repo}";
         pythonpackage = "pythoneda.iac.pulumi.azure";
         package = builtins.replaceStrings [ "." ] [ "/" ] pythonpackage;
