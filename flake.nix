@@ -21,23 +21,23 @@
   inputs = rec {
     flake-utils.url = "github:numtide/flake-utils/v1.0.0";
     nixos.url = "github:NixOS/nixpkgs/24.05";
-    pythoneda-iac-events = {
+    pythoneda-shared-iac-events = {
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixos.follows = "nixos";
       inputs.pythoneda-shared-pythonlang-banner.follows =
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:pythoneda-iac-def/events/0.0.6";
+      url = "github:pythoneda-shared-iac-def/events/0.0.7";
     };
-    pythoneda-iac-shared = {
+    pythoneda-shared-iac-shared = {
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixos.follows = "nixos";
       inputs.pythoneda-shared-pythonlang-banner.follows =
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:pythoneda-iac-def/shared/0.0.5";
+      url = "github:pythoneda-shared-iac-def/shared/0.0.7";
     };
     pythoneda-shared-pythonlang-banner = {
       inputs.nixos.follows = "nixos";
@@ -49,19 +49,19 @@
       inputs.nixos.follows = "nixos";
       inputs.pythoneda-shared-pythonlang-banner.follows =
         "pythoneda-shared-pythonlang-banner";
-      url = "github:pythoneda-shared-pythonlang-def/domain/0.0.88";
+      url = "github:pythoneda-shared-pythonlang-def/domain/0.0.89";
     };
   };
   outputs = inputs:
     with inputs;
     flake-utils.lib.eachDefaultSystem (system:
       let
-        org = "pythoneda-iac";
+        org = "pythoneda-shared-iac";
         repo = "pulumi-azure";
-        version = "0.0.5";
-        sha256 = "0f37snn70knkv0drzb2zbn39ja5yfy9xkanlv65snakhlmm931l3";
+        version = "0.0.7";
+        sha256 = "1avjj3x5258xlhbmy0qzk89cmbid12dj056xx0k623ylx1njrhia";
         pname = "${org}-${repo}";
-        pythonpackage = "pythoneda.iac.pulumi.azure";
+        pythonpackage = "pythoneda.shared.iac.pulumi.azure";
         package = builtins.replaceStrings [ "." ] [ "/" ] pythonpackage;
         pkgs = import nixos { inherit system; };
         description = "PythonEDA Infrastructure-as-Code using Pulumi for Azure";
@@ -75,9 +75,9 @@
         nixpkgsRelease =
           builtins.replaceStrings [ "\n" ] [ "" ] "nixos-${nixosVersion}";
         shared = import "${pythoneda-shared-pythonlang-banner}/nix/shared.nix";
-        pythoneda-iac-pulumi-azure-for = { python
-          , pythoneda-iac-events
-          , pythoneda-iac-shared
+        pythoneda-shared-iac-pulumi-azure-for = { python
+          , pythoneda-shared-iac-events
+          , pythoneda-shared-iac-shared
           , pythoneda-shared-pythonlang-banner
           , pythoneda-shared-pythonlang-domain}:
           let
@@ -102,8 +102,8 @@
               package = builtins.replaceStrings [ "." ] [ "/" ] pythonpackage;
               pulumi = python.pkgs.pulumi.version;
               pulumiAzureNative = pkgs.python312Packages.pulumi-azure-native.version;
-              pythonedaIacEvents = pythoneda-iac-events.version;
-              pythonedaIacShared = pythoneda-iac-shared.version;
+              pythonedaSharedIacEvents = pythoneda-shared-iac-events.version;
+              pythonedaSharedIacShared = pythoneda-shared-iac-shared.version;
               pythonedaSharedPythonlangBanner =
                 pythoneda-shared-pythonlang-banner.version;
               pythonedaSharedPythonlangDomain =
@@ -121,8 +121,8 @@
 
             nativeBuildInputs = [ python.pkgs.pip python.pkgs.poetry-core pkgs.docker ];
             propagatedBuildInputs = with python.pkgs; [
-              pythoneda-iac-events
-              pythoneda-iac-shared
+              pythoneda-shared-iac-events
+              pythoneda-shared-iac-shared
               pythoneda-shared-pythonlang-domain
               pulumi
               pulumi-azure-native
@@ -156,15 +156,15 @@
       in rec {
         defaultPackage = packages.default;
         devShells = rec {
-          default = pythoneda-iac-shared-python311;
-          pythoneda-iac-shared-python38 =
+          default = pythoneda-shared-iac-shared-python311;
+          pythoneda-shared-iac-shared-python38 =
             shared.devShell-for {
               banner = "${
                   pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python38
                 }/bin/banner.sh";
               extra-namespaces = "";
               nixpkgs-release = nixpkgsRelease;
-              package = packages.pythoneda-iac-pulumi-azure-python38;
+              package = packages.pythoneda-shared-iac-pulumi-azure-python38;
               python = pkgs.python38;
               pythoneda-shared-pythonlang-banner =
                 pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python38;
@@ -172,14 +172,14 @@
                 pythoneda-shared-pythonlang-domain.packages.${system}.pythoneda-shared-pythonlang-domain-python38;
               inherit archRole layer org pkgs repo space;
             };
-          pythoneda-iac-shared-python39 =
+          pythoneda-shared-iac-shared-python39 =
             shared.devShell-for {
               banner = "${
                   pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python39
                 }/bin/banner.sh";
               extra-namespaces = "";
               nixpkgs-release = nixpkgsRelease;
-              package = packages.pythoneda-iac-pulumi-azure-python39;
+              package = packages.pythoneda-shared-iac-pulumi-azure-python39;
               python = pkgs.python39;
               pythoneda-shared-pythonlang-banner =
                 pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python39;
@@ -187,14 +187,14 @@
                 pythoneda-shared-pythonlang-domain.packages.${system}.pythoneda-shared-pythonlang-domain-python39;
               inherit archRole layer org pkgs repo space;
             };
-          pythoneda-iac-shared-python310 =
+          pythoneda-shared-iac-shared-python310 =
             shared.devShell-for {
               banner = "${
                   pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python310
                 }/bin/banner.sh";
               extra-namespaces = "";
               nixpkgs-release = nixpkgsRelease;
-              package = packages.pythoneda-iac-pulumi-azure-python310;
+              package = packages.pythoneda-shared-iac-pulumi-azure-python310;
               python = pkgs.python310;
               pythoneda-shared-pythonlang-banner =
                 pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python310;
@@ -202,14 +202,14 @@
                 pythoneda-shared-pythonlang-domain.packages.${system}.pythoneda-shared-pythonlang-domain-python310;
               inherit archRole layer org pkgs repo space;
             };
-          pythoneda-iac-shared-python311 =
+          pythoneda-shared-iac-shared-python311 =
             shared.devShell-for {
               banner = "${
                   pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python311
                 }/bin/banner.sh";
               extra-namespaces = "";
               nixpkgs-release = nixpkgsRelease;
-              package = packages.pythoneda-iac-pulumi-azure-python311;
+              package = packages.pythoneda-shared-iac-pulumi-azure-python311;
               python = pkgs.python311;
               pythoneda-shared-pythonlang-banner =
                 pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python311;
@@ -217,14 +217,14 @@
                 pythoneda-shared-pythonlang-domain.packages.${system}.pythoneda-shared-pythonlang-domain-python311;
               inherit archRole layer org pkgs repo space;
             };
-          pythoneda-iac-shared-python312 =
+          pythoneda-shared-iac-shared-python312 =
             shared.devShell-for {
               banner = "${
                   pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python312
                 }/bin/banner.sh";
               extra-namespaces = "";
               nixpkgs-release = nixpkgsRelease;
-              package = packages.pythoneda-iac-pulumi-azure-python312;
+              package = packages.pythoneda-shared-iac-pulumi-azure-python312;
               python = pkgs.python312;
               pythoneda-shared-pythonlang-banner =
                 pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python312;
@@ -234,62 +234,62 @@
             };
         };
         packages = rec {
-          default = pythoneda-iac-pulumi-azure-python311;
-          pythoneda-iac-pulumi-azure-python38 =
-            pythoneda-iac-pulumi-azure-for {
+          default = pythoneda-shared-iac-pulumi-azure-python311;
+          pythoneda-shared-iac-pulumi-azure-python38 =
+            pythoneda-shared-iac-pulumi-azure-for {
               python = pkgs.python38;
-              pythoneda-iac-events =
-                pythoneda-iac-events.packages.${system}.pythoneda-iac-events-python38;
-              pythoneda-iac-shared =
-                pythoneda-iac-shared.packages.${system}.pythoneda-iac-shared-python38;
+              pythoneda-shared-iac-events =
+                pythoneda-shared-iac-events.packages.${system}.pythoneda-shared-iac-events-python38;
+              pythoneda-shared-iac-shared =
+                pythoneda-shared-iac-shared.packages.${system}.pythoneda-shared-iac-shared-python38;
               pythoneda-shared-pythonlang-banner =
                 pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python38;
               pythoneda-shared-pythonlang-domain =
                 pythoneda-shared-pythonlang-domain.packages.${system}.pythoneda-shared-pythonlang-domain-python38;
             };
-          pythoneda-iac-pulumi-azure-python39 =
-            pythoneda-iac-pulumi-azure-for {
+          pythoneda-shared-iac-pulumi-azure-python39 =
+            pythoneda-shared-iac-pulumi-azure-for {
               python = pkgs.python39;
-              pythoneda-iac-events =
-                pythoneda-iac-events.packages.${system}.pythoneda-iac-events-python39;
-              pythoneda-iac-shared =
-                pythoneda-iac-shared.packages.${system}.pythoneda-iac-shared-python39;
+              pythoneda-shared-iac-events =
+                pythoneda-shared-iac-events.packages.${system}.pythoneda-shared-iac-events-python39;
+              pythoneda-shared-iac-shared =
+                pythoneda-shared-iac-shared.packages.${system}.pythoneda-shared-iac-shared-python39;
               pythoneda-shared-pythonlang-banner =
                 pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python39;
               pythoneda-shared-pythonlang-domain =
                 pythoneda-shared-pythonlang-domain.packages.${system}.pythoneda-shared-pythonlang-domain-python39;
             };
-          pythoneda-iac-pulumi-azure-python310 =
-            pythoneda-iac-pulumi-azure-for {
+          pythoneda-shared-iac-pulumi-azure-python310 =
+            pythoneda-shared-iac-pulumi-azure-for {
               python = pkgs.python310;
-              pythoneda-iac-events =
-                pythoneda-iac-events.packages.${system}.pythoneda-iac-events-python310;
-              pythoneda-iac-shared =
-                pythoneda-iac-shared.packages.${system}.pythoneda-iac-shared-python310;
+              pythoneda-shared-iac-events =
+                pythoneda-shared-iac-events.packages.${system}.pythoneda-shared-iac-events-python310;
+              pythoneda-shared-iac-shared =
+                pythoneda-shared-iac-shared.packages.${system}.pythoneda-shared-iac-shared-python310;
               pythoneda-shared-pythonlang-banner =
                 pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python310;
               pythoneda-shared-pythonlang-domain =
                 pythoneda-shared-pythonlang-domain.packages.${system}.pythoneda-shared-pythonlang-domain-python310;
             };
-          pythoneda-iac-pulumi-azure-python311 =
-            pythoneda-iac-pulumi-azure-for {
+          pythoneda-shared-iac-pulumi-azure-python311 =
+            pythoneda-shared-iac-pulumi-azure-for {
               python = pkgs.python311;
-              pythoneda-iac-events =
-                pythoneda-iac-events.packages.${system}.pythoneda-iac-events-python311;
-              pythoneda-iac-shared =
-                pythoneda-iac-shared.packages.${system}.pythoneda-iac-shared-python311;
+              pythoneda-shared-iac-events =
+                pythoneda-shared-iac-events.packages.${system}.pythoneda-shared-iac-events-python311;
+              pythoneda-shared-iac-shared =
+                pythoneda-shared-iac-shared.packages.${system}.pythoneda-shared-iac-shared-python311;
               pythoneda-shared-pythonlang-banner =
                 pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python311;
               pythoneda-shared-pythonlang-domain =
                 pythoneda-shared-pythonlang-domain.packages.${system}.pythoneda-shared-pythonlang-domain-python311;
             };
-          pythoneda-iac-pulumi-azure-python312 =
-            pythoneda-iac-pulumi-azure-for {
+          pythoneda-shared-iac-pulumi-azure-python312 =
+            pythoneda-shared-iac-pulumi-azure-for {
               python = pkgs.python312;
-              pythoneda-iac-events =
-                pythoneda-iac-events.packages.${system}.pythoneda-iac-events-python312;
-              pythoneda-iac-shared =
-                pythoneda-iac-shared.packages.${system}.pythoneda-iac-shared-python312;
+              pythoneda-shared-iac-events =
+                pythoneda-shared-iac-events.packages.${system}.pythoneda-shared-iac-events-python312;
+              pythoneda-shared-iac-shared =
+                pythoneda-shared-iac-shared.packages.${system}.pythoneda-shared-iac-shared-python312;
               pythoneda-shared-pythonlang-banner =
                 pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python312;
               pythoneda-shared-pythonlang-domain =

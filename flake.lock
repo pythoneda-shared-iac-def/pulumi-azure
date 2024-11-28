@@ -32,7 +32,7 @@
         "type": "github"
       }
     },
-    "pythoneda-iac-events": {
+    "pythoneda-shared-iac-events": {
       "inputs": {
         "flake-utils": [
           "flake-utils"
@@ -48,21 +48,55 @@
         ]
       },
       "locked": {
-        "lastModified": 1732738212,
-        "narHash": "sha256-Yfvgy05CCY+ziLJn+hzKYa2LM0WxRNisE1YXLTVyT/Q=",
-        "owner": "pythoneda-iac-def",
+        "lastModified": 1732790268,
+        "narHash": "sha256-plguvlamXRmQou1KlxAiQgsr+HbP8aJl/CwsdTWxLKE=",
+        "owner": "pythoneda-shared-iac-def",
         "repo": "events",
-        "rev": "fb4619531d4385efc79777c3c66e455942bd59c9",
+        "rev": "3118f1c8ec1efbcca664256c560c30f65d9ad69a",
         "type": "github"
       },
       "original": {
-        "owner": "pythoneda-iac-def",
-        "ref": "0.0.6",
+        "owner": "pythoneda-shared-iac-def",
+        "ref": "0.0.7",
         "repo": "events",
         "type": "github"
       }
     },
-    "pythoneda-iac-shared": {
+    "pythoneda-shared-iac-events_2": {
+      "inputs": {
+        "flake-utils": [
+          "pythoneda-shared-iac-shared",
+          "flake-utils"
+        ],
+        "nixos": [
+          "pythoneda-shared-iac-shared",
+          "nixos"
+        ],
+        "pythoneda-shared-pythonlang-banner": [
+          "pythoneda-shared-iac-shared",
+          "pythoneda-shared-pythonlang-banner"
+        ],
+        "pythoneda-shared-pythonlang-domain": [
+          "pythoneda-shared-iac-shared",
+          "pythoneda-shared-pythonlang-domain"
+        ]
+      },
+      "locked": {
+        "lastModified": 1732790268,
+        "narHash": "sha256-plguvlamXRmQou1KlxAiQgsr+HbP8aJl/CwsdTWxLKE=",
+        "owner": "pythoneda-shared-iac-def",
+        "repo": "events",
+        "rev": "3118f1c8ec1efbcca664256c560c30f65d9ad69a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pythoneda-shared-iac-def",
+        "ref": "0.0.7",
+        "repo": "events",
+        "type": "github"
+      }
+    },
+    "pythoneda-shared-iac-shared": {
       "inputs": {
         "flake-utils": [
           "flake-utils"
@@ -70,6 +104,7 @@
         "nixos": [
           "nixos"
         ],
+        "pythoneda-shared-iac-events": "pythoneda-shared-iac-events_2",
         "pythoneda-shared-pythonlang-banner": [
           "pythoneda-shared-pythonlang-banner"
         ],
@@ -78,16 +113,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1732738275,
-        "narHash": "sha256-whE6K8tofFpVydexZwA5fPP8nYdrUPCuQrrjBZ2MgRE=",
-        "owner": "pythoneda-iac-def",
+        "lastModified": 1732791173,
+        "narHash": "sha256-pfFKeZIYAAqD1y7/u1wvVKKHz+FUwY7qzDgXoHr9OpM=",
+        "owner": "pythoneda-shared-iac-def",
         "repo": "shared",
-        "rev": "0324906b944a9d7bcd57e397cc839cf5c6606992",
+        "rev": "1508e8140953495069d8a5766d91e3556524541d",
         "type": "github"
       },
       "original": {
-        "owner": "pythoneda-iac-def",
-        "ref": "0.0.5",
+        "owner": "pythoneda-shared-iac-def",
+        "ref": "0.0.7",
         "repo": "shared",
         "type": "github"
       }
@@ -129,16 +164,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1732732671,
-        "narHash": "sha256-UkOARoHJHOg/1cdngTWR47VyyWvODw/tF1keZncrT1Y=",
+        "lastModified": 1732789010,
+        "narHash": "sha256-ZnlrXNHbe6Lp25FCljul/1OeduXatYFFNl+7ObfhXhQ=",
         "owner": "pythoneda-shared-pythonlang-def",
         "repo": "domain",
-        "rev": "7ab55ed2161adeb1a5eca72671c7a50e3ad3ebfe",
+        "rev": "2e6dbb31a9e6cf671547f73fa5d9b29109f6b140",
         "type": "github"
       },
       "original": {
         "owner": "pythoneda-shared-pythonlang-def",
-        "ref": "0.0.88",
+        "ref": "0.0.89",
         "repo": "domain",
         "type": "github"
       }
@@ -147,8 +182,8 @@
       "inputs": {
         "flake-utils": "flake-utils",
         "nixos": "nixos",
-        "pythoneda-iac-events": "pythoneda-iac-events",
-        "pythoneda-iac-shared": "pythoneda-iac-shared",
+        "pythoneda-shared-iac-events": "pythoneda-shared-iac-events",
+        "pythoneda-shared-iac-shared": "pythoneda-shared-iac-shared",
         "pythoneda-shared-pythonlang-banner": "pythoneda-shared-pythonlang-banner",
         "pythoneda-shared-pythonlang-domain": "pythoneda-shared-pythonlang-domain"
       }
