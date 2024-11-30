@@ -156,7 +156,7 @@
       in rec {
         defaultPackage = packages.default;
         devShells = rec {
-          default = pythoneda-shared-iac-shared-python312;
+          default = pythoneda-shared-iac-shared-python311;
           pythoneda-shared-iac-shared-python39 =
             shared.devShell-for {
               banner = "${
@@ -234,7 +234,7 @@
             };
         };
         packages = rec {
-          default = pythoneda-shared-iac-pulumi-azure-python312;
+          default = pythoneda-shared-iac-pulumi-azure-python311;
           pythoneda-shared-iac-pulumi-azure-python39 =
             pythoneda-shared-iac-pulumi-azure-for {
               python = pkgs.python39;
