@@ -49,7 +49,7 @@
       inputs.nixos.follows = "nixos";
       inputs.pythoneda-shared-pythonlang-banner.follows =
         "pythoneda-shared-pythonlang-banner";
-      url = "github:pythoneda-shared-pythonlang-def/domain/0.0.90";
+      url = "github:pythoneda-shared-pythonlang-def/domain/0.0.92";
     };
   };
   outputs = inputs:
@@ -58,8 +58,8 @@
       let
         org = "pythoneda-shared-iac";
         repo = "pulumi-azure";
-        version = "0.0.7";
-        sha256 = "1avjj3x5258xlhbmy0qzk89cmbid12dj056xx0k623ylx1njrhia";
+        version = "0.0.8";
+        sha256 = "1imb4z9qidjaz4kj9mz0h76vb45n557s43wvhav0rzvn1h5sqy0c";
         pname = "${org}-${repo}";
         pythonpackage = "pythoneda.shared.iac.pulumi.azure";
         package = builtins.replaceStrings [ "." ] [ "/" ] pythonpackage;
