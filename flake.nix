@@ -20,19 +20,19 @@
   description = "Nix flake for pythoneda-iac/pulumi-azure";
   inputs = rec {
     flake-utils.url = "github:numtide/flake-utils/v1.0.0";
-    nixos.url = "github:NixOS/nixpkgs/24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/24.05";
     pythoneda-shared-iac-events = {
       inputs.flake-utils.follows = "flake-utils";
-      inputs.nixos.follows = "nixos";
+      inputs.nixpkgs.follows = "nixpkgs";
       inputs.pythoneda-shared-pythonlang-banner.follows =
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:pythoneda-shared-iac-def/events/0.0.10";
+      url = "github:pythoneda-shared-iac-def/events/0.0.11";
     };
     pythoneda-shared-iac-shared = {
       inputs.flake-utils.follows = "flake-utils";
-      inputs.nixos.follows = "nixos";
+      inputs.nixpkgs.follows = "nixpkgs";
       inputs.pythoneda-shared-pythonlang-banner.follows =
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
@@ -40,16 +40,16 @@
       url = "github:pythoneda-shared-iac-def/shared/0.0.7";
     };
     pythoneda-shared-pythonlang-banner = {
-      inputs.nixos.follows = "nixos";
+      inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
-      url = "github:pythoneda-shared-pythonlang-def/banner/0.0.71";
+      url = "github:pythoneda-shared-pythonlang-def/banner/0.0.72";
     };
     pythoneda-shared-pythonlang-domain = {
       inputs.flake-utils.follows = "flake-utils";
-      inputs.nixos.follows = "nixos";
+      inputs.nixpkgs.follows = "nixpkgs";
       inputs.pythoneda-shared-pythonlang-banner.follows =
         "pythoneda-shared-pythonlang-banner";
-      url = "github:pythoneda-shared-pythonlang-def/domain/0.0.93";
+      url = "github:pythoneda-shared-pythonlang-def/domain/0.0.94";
     };
   };
   outputs = inputs:
@@ -63,7 +63,7 @@
         pname = "${org}-${repo}";
         pythonpackage = "pythoneda.shared.iac.pulumi.azure";
         package = builtins.replaceStrings [ "." ] [ "/" ] pythonpackage;
-        pkgs = import nixos { inherit system; };
+        pkgs = import nixpkgs { inherit system; };
         description = "PythonEDA Infrastructure-as-Code using Pulumi for Azure";
         license = pkgs.lib.licenses.gpl3;
         homepage = "https://github.com/${org}/${repo}";
@@ -71,9 +71,9 @@
         archRole = "E";
         space = "I";
         layer = "D";
-        nixosVersion = builtins.readFile "${nixos}/.version";
+        nixpkgsVersion = builtins.readFile "${nixpkgs}/.version";
         nixpkgsRelease =
-          builtins.replaceStrings [ "\n" ] [ "" ] "nixos-${nixosVersion}";
+          builtins.replaceStrings [ "\n" ] [ "" ] "nixpkgs-${nixpkgsVersion}";
         shared = import "${pythoneda-shared-pythonlang-banner}/nix/shared.nix";
         pythoneda-shared-iac-pulumi-azure-for = { python
           , pythoneda-shared-iac-events
