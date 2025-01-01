@@ -58,8 +58,8 @@
       let
         org = "pythoneda-shared-iac";
         repo = "pulumi-azure";
-        version = "0.0.12";
-        sha256 = "0lnc5qr3a8jxfrbf5nxfa6xb5zvnpdad19i4wjxb9f5wx6isi3xp";
+        version = "0.0.14";
+        sha256 = "1za3rn181rjrsxqvwd2b7klifncidw29kj5gbpdqwj6iq780i057";
         pname = "${org}-${repo}";
         pythonpackage = "pythoneda.shared.iac.pulumi.azure";
         package = builtins.replaceStrings [ "." ] [ "/" ] pythonpackage;
