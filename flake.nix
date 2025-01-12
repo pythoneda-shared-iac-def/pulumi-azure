@@ -156,7 +156,7 @@
                 VERSION="$(command grep -m 1 '^Version: ' $METADATA | command cut -d ' ' -f 2)"
                 command ln -s $dep $out/deps/flakes/$NAME-$VERSION || true
               done
-              for nixpkgsDep in ${pulumi} ${pulumi-azure}; do
+              for nixpkgsDep in ${pulumi} ${pulumi-azure-native}; do
                 METADATA=$nixpkgsDep/lib/python${pythonMajorMinorVersion}/site-packages/*.dist-info/METADATA
                 NAME="$(command grep -m 1 '^Name: ' $METADATA | command cut -d ' ' -f 2)"
                 VERSION="$(command grep -m 1 '^Version: ' $METADATA | command cut -d ' ' -f 2)"
